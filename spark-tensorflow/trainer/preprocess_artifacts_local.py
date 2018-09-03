@@ -23,7 +23,7 @@ import csv
 
 def preprocess_integer_dirs(artifact_dir):
     dirs = os.listdir(artifact_dir)
-    integer_dirs = len(filter(lambda dir: dir.startswith('integer-feature'), dirs))
+    integer_dirs = list(filter(lambda dir: dir.startswith('integer-feature'), dirs))
     assert len(integer_dirs) == 13, 'Expected 13 integer feature directories'
     for integer_dir in integer_dirs:
         full_dir = os.path.join(artifact_dir, integer_dir)
