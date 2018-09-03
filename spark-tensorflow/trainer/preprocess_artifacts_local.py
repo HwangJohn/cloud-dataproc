@@ -45,7 +45,7 @@ def preprocess_categorical_dirs(artifact_dir):
     for categorical_dir in categorical_dirs:
         full_dir = os.path.join(artifact_dir, categorical_dir)
         files = os.listdir(full_dir)
-        part_file_name = filter(lambda file: file.startswith('part'), files)[0]
+        part_file_name = list(filter(lambda file: file.startswith('part'), files))[0]
         print('Part file is {}'.format(part_file_name))
         with open(os.path.join(full_dir, part_file_name), 'r') as part_file:
             csvreader = csv.reader(part_file)
