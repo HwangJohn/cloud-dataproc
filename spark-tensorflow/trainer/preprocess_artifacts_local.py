@@ -23,12 +23,12 @@ import csv
 
 def preprocess_integer_dirs(artifact_dir):
     dirs = os.listdir(artifact_dir)
-    integer_dirs = filter(lambda dir: dir.startswith('integer-feature'), dirs)
+    integer_dirs = len(filter(lambda dir: dir.startswith('integer-feature'), dirs))
     assert len(integer_dirs) == 13, 'Expected 13 integer feature directories'
     for integer_dir in integer_dirs:
         full_dir = os.path.join(artifact_dir, integer_dir)
         files = os.listdir(full_dir)
-        part_files = filter(lambda file: file.startswith('part'), files)
+        part_files = list(filter(lambda file: file.startswith('part'), files))
         assert len(part_files) == 1, ('Did not find 1 {'
                                       '}'.format(integer_dir))
         part_file = part_files[0]
@@ -38,8 +38,8 @@ def preprocess_integer_dirs(artifact_dir):
 
 def preprocess_categorical_dirs(artifact_dir):
     dirs = os.listdir(artifact_dir)
-    categorical_dirs = filter(lambda dir: dir.startswith('categorical-feature'),
-                          dirs)
+    categorical_dirs = list(filter(lambda dir: dir.startswith('categorical-feature'),
+                          dirs))
     assert len(categorical_dirs) == 26, ('Expected 26 integer feature '
                                          'directories')
     for categorical_dir in categorical_dirs:
